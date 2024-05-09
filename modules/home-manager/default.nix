@@ -42,6 +42,11 @@
       autosuggestion = {enable = true;};
       syntaxHighlighting = {enable = true;};
 
+      shellAliases = {
+        nixswitch = "darwin-rebuild switch --flake ~/nixos-config/.#";
+        nixup = "pushd ~/nixos-config; nix flake update; nixswitch";
+      };
+
       # plugins = [
       #   {
       #     name = "zsh-autosuggestions";
