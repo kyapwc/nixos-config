@@ -44,7 +44,7 @@
 
       shellAliases = {
         nixswitch = "darwin-rebuild switch --flake ~/nixos-config/.#";
-        nixup = "pushd ~/nixos-config; nix flake update; nixswitch";
+        nixup = "pushd ~/nixos-config; nix flake update; nixswitch; popd";
       };
 
       # plugins = [
