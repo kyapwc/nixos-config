@@ -7,7 +7,7 @@
   # Here go the darwin preferences and configuration
   programs.zsh.enable = true;
   environment = {
-    shells = [pkgs.bash pkgs.zsh];
+    shells = with pkgs; [bash zsh];
     loginShell = pkgs.zsh;
     shellAliases = {
       gs = "git status";

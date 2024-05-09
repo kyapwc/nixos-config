@@ -6,12 +6,12 @@
   home = {
     # Backwards compat (don't change it when changing package input)
     stateVersion = "23.11";
-    packages = [
-      pkgs.ripgrep
-      pkgs.fd
-      pkgs.curl
-      pkgs.less
-      pkgs.tree
+    packages = with pkgs; [
+      ripgrep
+      fd
+      curl
+      less
+      tree
       # pwnvim.packages."aarch64-darwin".default; # disable first since I don't need it for now
     ];
     sessionVariables = {
@@ -83,14 +83,5 @@
     };
   };
 
-  home.file.".inputrc".text = ''
-    set show-all-if-ambiguous on
-    set completion-ignore-case on
-    set mark-directories on
-    set mark-symlinked-directories on
-    set match-hidden-files off
-    set visible-stats on
-    set keymap vi
-    set editing-mode vi-insert
-  '';
+  home.file.".inputrc".source = ./dotfiles/inputrc;
 }
