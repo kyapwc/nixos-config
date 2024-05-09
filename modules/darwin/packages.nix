@@ -1,0 +1,40 @@
+{pkgs}:
+with pkgs; [
+  asciinema
+  asdf-vm
+  kubelogin
+  kubectl
+  awscli2
+  bat
+  coreutils
+  fd
+  fzf
+  gitflow
+  git
+  go
+  glib
+  harfbuzz
+  kubernetes-helm
+  jq
+  just
+  lua
+  luajit
+  luarocks
+  minikube
+  nats-server
+  jdk8
+  protobuf
+  pyenv
+  pycparser
+  redis
+  sketchybar
+  ripgrep
+  silver-searcher
+  stow
+  skhd
+  yabai
+  tree
+  terraform
+  terragrunt
+  ydiff
+]

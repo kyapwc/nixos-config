@@ -1,6 +1,6 @@
 {
   pkgs,
-  pwnvim,
+  # pwnvim,
   ...
 }: {
   home = {
@@ -46,25 +46,6 @@
         nixswitch = "darwin-rebuild switch --flake ~/nixos-config/.#";
         nixup = "pushd ~/nixos-config; nix flake update; nixswitch; popd";
       };
-
-      # plugins = [
-      #   {
-      #     name = "zsh-autosuggestions";
-      #     src = pkgs.fetchGit {
-      #       owner = "zsh-users";
-      #       repo = "zsh-autosuggestions";
-      #       rev = "v0.7.0";
-      #     };
-      #   }
-      #   {
-      #     name = "zsh-syntax-highlighting";
-      #     src = pkgs.fetchGit {
-      #       owner = "zsh-users";
-      #       repo = "zsh-syntax-highlighting";
-      #       rev = "0.8.0";
-      #     };
-      #   }
-      # ];
 
       oh-my-zsh = {
         enable = true;

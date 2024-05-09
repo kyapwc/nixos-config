@@ -1,5 +1,5 @@
 {
-  description = "Testing out Nix-Darwin";
+  description = "Yap's Nix-Darwin Configuration";
 
   inputs = {
     # Where we get the most of our software
@@ -20,7 +20,7 @@
     };
 
     # Imported nvim config from zmre github
-    pwnvim.url = "github:zmre/pwnvim";
+    # pwnvim.url = "github:zmre/pwnvim";
   };
 
   outputs = inputs @ {
@@ -44,7 +44,7 @@
           home-manager = {
             useGlobalPkgs = true;
             # useUserPkgs = true;
-            extraSpecialArgs = {inherit pwnvim;};
+            # extraSpecialArgs = {inherit pwnvim;};
             users.kenyap.imports = [./modules/home-manager];
           };
         }

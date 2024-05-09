@@ -24,7 +24,7 @@
       scripts = "cat package.json | jq -C .'scripts' | less -R";
       filesize = "du -hs ";
     };
-    systemPackages = [pkgs.coreutils];
+    systemPackages = import "./packages.nix";
     systemPath = ["/opt/homebrew/bin"];
     pathsToLink = ["/Applications"];
   };
@@ -57,7 +57,6 @@
     (pkgs.nerdfonts.override {fonts = ["FiraCode" "SourceCodePro" "Cousine"];})
   ];
 
-  services.nix-daemon.enable = true;
   system.defaults = {
     finder = {
       AppleShowAllExtensions = true;
@@ -74,5 +73,18 @@
     dock = {
       autohide = true;
     };
+  };
+
+  services = {
+    nix-daemon.enable = true;
+
+    yabai = {
+      enable = true;
+      enableScriptingAddition = true;
+    };
+
+    skhd = {enable = true;};
+
+    sketchybar = {enable = true;};
   };
 }
