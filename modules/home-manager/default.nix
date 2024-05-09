@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pwnvim,
+  ...
+}: {
   home = {
     # Backwards compat (don't change it when changing package input)
     stateVersion = "23.11";
@@ -8,7 +12,7 @@
       pkgs.curl
       pkgs.less
       pkgs.tree
-      # inputs.pwnvim.packages."aarch64-darwin".default; # disable first since I don't need it for now
+      # pwnvim.packages."aarch64-darwin".default; # disable first since I don't need it for now
     ];
     sessionVariables = {
       PAGER = "less";
