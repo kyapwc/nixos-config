@@ -18,6 +18,9 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Imported nvim config from zmre github
+    pwnvim.url = "github:zmre/pwnvim";
   };
 
   outputs = inputs: {
@@ -55,6 +58,8 @@
               filesize = "du -hs ";
             };
             systemPackages = [pkgs.coreutils];
+            systemPath = ["/opt/homebrew/bin"];
+            pathsToLink = ["/Applications"];
           };
           nix.extraOptions = ''
             experimental-features = nix-command flakes
@@ -69,6 +74,15 @@
               remapCapsLockToControl = true;
             };
             stateVersion = 4;
+          };
+
+          homebrew = {
+            enable = true;
+            caskArgs.no_quarantine = true;
+            global.brewfile = true;
+            # able to install MacOS Apps from App Store, just specify it here
+            masApps = {};
+            casks = ["raycast"];
           };
 
           fonts.fontDir.enable = true;
@@ -107,7 +121,14 @@
                 home = {
                   # Backwards compat (don't change it when changing package input)
                   stateVersion = "23.11";
-                  packages = [pkgs.ripgrep pkgs.fd pkgs.curl pkgs.less pkgs.tree];
+                  packages = [
+                    pkgs.ripgrep
+                    pkgs.fd
+                    pkgs.curl
+                    pkgs.less
+                    pkgs.tree
+                    # inputs.pwnvim.packages."aarch64-darwin".default; # disable first since I don't need it for now
+                  ];
                   sessionVariables = {
                     PAGER = "less";
                     CLICOLOR = 1;
@@ -176,6 +197,17 @@
                     enableZshIntegration = true;
                   };
                 };
+
+                home.file.".inputrc".text = ''
+                  set show-all-if-ambiguous on
+                  set completion-ignore-case on
+                  set mark-directories on
+                  set mark-symlinked-directories on
+                  set match-hidden-files off
+                  set visible-stats on
+                  set keymap vi
+                  set editing-mode vi-insert
+                '';
               })
             ];
           };
