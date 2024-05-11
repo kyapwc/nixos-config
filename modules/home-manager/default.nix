@@ -18,6 +18,7 @@
       PAGER = "less";
       CLICOLOR = 1;
       EDITOR = "nvim";
+      NIXPKGS_ALLOW_UNFREE=1;
     };
     username = "kenyap";
     homeDirectory = "/Users/kenyap";

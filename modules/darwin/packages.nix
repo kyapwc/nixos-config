@@ -10,14 +10,12 @@ with pkgs; [
   fd
   fzf
   gitflow
-  git
   go
   glib
   harfbuzz
   kubernetes-helm
   jq
   just
-  lua
   luajit
   luarocks
   minikube
@@ -25,7 +23,6 @@ with pkgs; [
   jdk8
   protobuf
   pyenv
-  pycparser
   redis
   sketchybar
   ripgrep

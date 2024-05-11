@@ -27,13 +27,14 @@
     nixpkgs,
     home-manager,
     darwin,
-    pwnvim,
+    # pwnvim,
     ...
   }: {
     darwinConfigurations.Kens-MacBook-Pro-2 = darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
+        config.allowUnfree = true;
       };
 
       modules = [

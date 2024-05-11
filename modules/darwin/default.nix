@@ -1,7 +1,15 @@
-{pkgs, ...}: {
+{pkgs, ...}:
+let
+  configDir = toString ./.;
+  systemPackages = import "${configDir}/packages.nix" { inherit pkgs; };
+  yabaiExtraConfig = import "${configDir}/yabai_config.nix" { inherit pkgs; };
+  skhdConfig = import "${configDir}/skhd_config.nix" { inherit pkgs; };
+in
+{
   users.users."kenyap" = {
     name = "kenyap";
     home = "/Users/kenyap";
+    createHome = true;
   };
 
   # Here go the darwin preferences and configuration
@@ -24,7 +32,7 @@
       scripts = "cat package.json | jq -C .'scripts' | less -R";
       filesize = "du -hs ";
     };
-    systemPackages = import "./packages.nix";
+    systemPackages = systemPackages;
     systemPath = ["/opt/homebrew/bin"];
     pathsToLink = ["/Applications"];
   };
@@ -49,7 +57,8 @@
     global.brewfile = true;
     # able to install MacOS Apps from App Store, just specify it here
     masApps = {};
-    casks = ["raycast"];
+    casks = ["raycast" "arc"];
+    # brews = ["koekeishiya/formulae/yabai" "koekeishiya/formulae/skhd"];
   };
 
   fonts.fontDir.enable = true;
@@ -67,7 +76,7 @@
     NSGlobalDomain = {
       AppleShowAllExtensions = true;
       InitialKeyRepeat = 14;
-      KeyRepeat = 1;
+      KeyRepeat = 5;
     };
 
     dock = {
@@ -81,9 +90,17 @@
     yabai = {
       enable = true;
       enableScriptingAddition = true;
+      config = {
+        auto_balance = "on";
+        mouse_modifier = "ctrl";
+        focus_follows_mouse = "on";
+        mouse_action1 = "move";
+        mouse_follows_focus = "on";
+      };
+      extraConfig = yabaiExtraConfig;
     };
 
-    skhd = {enable = true;};
+    skhd = {enable = true; skhdConfig = skhdConfig; };
 
     sketchybar = {enable = true;};
   };
