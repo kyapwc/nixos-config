@@ -60,7 +60,7 @@ in
     global.brewfile = true;
     # able to install MacOS Apps from App Store, just specify it here
     masApps = {};
-    casks = ["raycast" "arc"];
+    casks = ["raycast" "arc" "wezterm"];
     # brews = ["koekeishiya/formulae/yabai" "koekeishiya/formulae/skhd"];
   };
 

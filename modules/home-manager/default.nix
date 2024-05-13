@@ -63,11 +63,11 @@
       enableZshIntegration = true;
     };
 
-    wezterm = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-    };
+    # wezterm = {
+    #   enable = true;
+    #   enableBashIntegration = true;
+    #   enableZshIntegration = true;
+    # };
   };
 
   home.file.".inputrc".source = ./dotfiles/inputrc;
