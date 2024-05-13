@@ -5,8 +5,8 @@ let
   # yabaiExtraConfig = import "${configDir}/yabai_config.nix" { inherit pkgs; };
   # skhdConfig = import "${configDir}/skhd_config.nix" { inherit pkgs; };
 
-  yabaiRc = (builtins.readFile "./yabairc");
-  skhdRc = (builtins.readFile "./skhdrc");
+  yabaiRc = (builtins.readFile "${configDir}/yabairc");
+  skhdRc = (builtins.readFile "${configDir}/skhdrc");
 in
 {
   users.users."kenyap" = {
