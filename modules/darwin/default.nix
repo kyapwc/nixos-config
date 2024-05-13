@@ -2,11 +2,6 @@
 let
   configDir = toString ./.;
   systemPackages = import "${configDir}/packages.nix" { inherit pkgs; };
-  # yabaiExtraConfig = import "${configDir}/yabai_config.nix" { inherit pkgs; };
-  # skhdConfig = import "${configDir}/skhd_config.nix" { inherit pkgs; };
-
-  yabaiRc = (builtins.readFile "${configDir}/yabairc");
-  skhdRc = (builtins.readFile "${configDir}/skhdrc");
 in
 {
   users.users."kenyap" = {
@@ -16,7 +11,6 @@ in
   };
 
   # Here go the darwin preferences and configuration
-  programs.zsh.enable = true;
   environment = {
     shells = with pkgs; [bash zsh];
     loginShell = pkgs.zsh;
@@ -61,7 +55,7 @@ in
     # able to install MacOS Apps from App Store, just specify it here
     masApps = {};
     casks = ["raycast" "arc" "wezterm"];
-    # brews = ["koekeishiya/formulae/yabai" "koekeishiya/formulae/skhd"];
+    brews = ["koekeishiya/formulae/yabai" "koekeishiya/formulae/skhd" "zsh" "neovim"];
   };
 
   fonts.fontDir.enable = true;
@@ -89,23 +83,6 @@ in
 
   services = {
     nix-daemon.enable = true;
-
-    yabai = {
-      enable = true;
-      enableScriptingAddition = true;
-      config = {
-        auto_balance = "on";
-        mouse_modifier = "ctrl";
-        focus_follows_mouse = "on";
-        mouse_action1 = "move";
-        mouse_follows_focus = "on";
-      };
-      # extraConfig = yabaiExtraConfig;
-      extraConfig = yabaiRc;
-    };
-
-    skhd = {enable = true; skhdConfig = skhdRc; };
-
     sketchybar = {enable = true;};
   };
 }
