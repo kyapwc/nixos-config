@@ -2,8 +2,11 @@
 let
   configDir = toString ./.;
   systemPackages = import "${configDir}/packages.nix" { inherit pkgs; };
-  yabaiExtraConfig = import "${configDir}/yabai_config.nix" { inherit pkgs; };
-  skhdConfig = import "${configDir}/skhd_config.nix" { inherit pkgs; };
+  # yabaiExtraConfig = import "${configDir}/yabai_config.nix" { inherit pkgs; };
+  # skhdConfig = import "${configDir}/skhd_config.nix" { inherit pkgs; };
+
+  yabaiRc = (builtins.readFile "./yabairc");
+  skhdRc = (builtins.readFile "./skhdrc");
 in
 {
   users.users."kenyap" = {
@@ -97,10 +100,11 @@ in
         mouse_action1 = "move";
         mouse_follows_focus = "on";
       };
-      extraConfig = yabaiExtraConfig;
+      # extraConfig = yabaiExtraConfig;
+      extraConfig = yabaiRc;
     };
 
-    skhd = {enable = true; skhdConfig = skhdConfig; };
+    skhd = {enable = true; skhdConfig = skhdRc; };
 
     sketchybar = {enable = true;};
   };
